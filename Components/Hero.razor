@@ -2,63 +2,10 @@
 <section id="hero" class="d-flex flex-column justify-content-center align-items-center">
     <div class="hero-container" data-aos="fade-in">
         <h1>Shivam Kumar</h1>
-        <p>I'm <span class="typed" id="typing-text"></span>@displayedText</p>
+        <p>I'm <span class="typed" id="typing-text"></span>.NET Developer</p>
     </div>
 </section><!-- End Hero -->
 
 @code {
-    private static string[] sentences = {
-        ".NET Core Developer",
-        "Cloud Engineer.",
-        "Backend Developer.",
-        "President Of CODEx Club MMDU"
-    };
-
-    private string displayedText = "";
-    private int sentenceIndex = 0;
-    private int charIndex = 0;
-
-    protected override void OnInitialized()
-    {
-        typeText();
-    }
-
-    private void typeText()
-    {
-        if (sentenceIndex < sentences.Length)
-        {
-            if (charIndex < sentences[sentenceIndex].Length)
-            {
-                displayedText += sentences[sentenceIndex][charIndex];
-                charIndex++;
-                InvokeAsync(() => StateHasChanged()); // Trigger UI update
-                System.Threading.Thread.Sleep(50); // Adjust the typing speed here (in milliseconds)
-                typeText();
-            }
-            else
-            {
-                System.Threading.Thread.Sleep(1000); // Delay before erasing the sentence
-                eraseCharacter();
-            }
-        }
-    }
-
-    private void eraseCharacter()
-    {
-        if (charIndex >= 0)
-        {
-            displayedText = sentences[sentenceIndex].Substring(0, charIndex);
-            charIndex--;
-            InvokeAsync(() => StateHasChanged()); // Trigger UI update
-            System.Threading.Thread.Sleep(50); // Adjust the erasing speed here (in milliseconds);
-            eraseCharacter();
-        }
-        else
-        {
-            sentenceIndex = (sentenceIndex + 1) % sentences.Length;
-            charIndex = 0;
-            System.Threading.Thread.Sleep(1000); // Delay before typing the next sentence
-            typeText();
-        }
-    }
+  
 }
